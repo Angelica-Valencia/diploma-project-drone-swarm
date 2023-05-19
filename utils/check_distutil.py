@@ -14,6 +14,7 @@ print(sys.executable)
 print("\nIs Python 64-bit?")
 print(struct.calcsize('P') * 8 == 64)
 
+
 print("Endianess")
 print(sys.byteorder)
 
