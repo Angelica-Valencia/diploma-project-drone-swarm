@@ -12,7 +12,7 @@ drone = tellopy.Tello()
 # Start video streaming in separate thread
 def start_drone_stream():
     drone.connect()
-    drone.start_video()
+    drone.streamon()
 
 streaming_thread = threading.Thread(target=start_drone_stream)
 streaming_thread.start()

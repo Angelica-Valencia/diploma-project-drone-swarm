@@ -137,7 +137,8 @@ if __name__ == "__main__":
 
     print("WELCOME TO MOCK xDRONE: \nI pretend to be a drone so you don't have to.")
     # 8999 is NOT the default Tello drone port. Update tello.py accordingly
-    HOST, PORT = "127.0.0.1", 8999
+    # HOST, PORT = "127.0.0.1", 8999
+    HOST, PORT = "0", 8889
     server = ThreadedUDPServer((HOST, PORT), DroneServer)
     with server:
         ip, port = server.server_address

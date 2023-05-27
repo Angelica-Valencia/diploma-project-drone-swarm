@@ -3,7 +3,7 @@ import time
 
 
 class TelloDrone:
-    def __init__(self, host="10.25.35.130", port=8889, state_udp_port=8890):
+    def __init__(self, host="10.25.35.127", port=8889, state_udp_port=8890):
         self.host = host
         self.port = port
         self.state_udp_port = state_udp_port
@@ -38,9 +38,7 @@ class TelloDrone:
             address = address[0]
             print(f"\nData received from {address} at state_socket")
             telemetry_data = data.decode("ASCII").split(";")
-            telemetry_dict = dict(
-                telem.split(":") for telem in telemetry_data if telem and ":" in telem
-            )
+            telemetry_dict = dict(telem.split(":") for telem in telemetry_data if telem and ":" in telem)
             for key, value in telemetry_dict.items():
                 print(f"{key}: {value}")
             time.sleep(1)
