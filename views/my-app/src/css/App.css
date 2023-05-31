@@ -1,0 +1,100 @@
+@font-face {
+  font-family: 'Quicksand';
+  src: url('../fonts/Quicksand/static/Quicksand-Bold.ttf') format('truetype');
+  src: url('../fonts/Quicksand/static/Quicksand-Light.ttf') format('truetype');
+  src: url('../fonts/Quicksand/static/Quicksand-Medium.ttf') format('truetype');
+  src: url('../fonts/Quicksand/static/Quicksand-Regular.ttf') format('truetype');
+  src: url('../fonts/Quicksand/static/Quicksand-SemiBold.ttf') format('truetype');
+  /* Add additional src lines for different font formats if available */
+  /* e.g., src: url('fonts/Quicksand-Regular.woff2') format('woff2'); */
+  /* e.g., src: url('fonts/Quicksand-Regular.woff') format('woff'); */
+}
+
+.Start {
+  text-align: center;
+}
+
+
+
+.Start-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .Start-logo {
+    animation: Start-logo-spin infinite 20s linear;
+  }
+}
+
+.Start-header {
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+#dark .Start-header{
+  background: linear-gradient(to bottom, #231942, #5E548E);
+}
+
+#medium .Start-header{
+  background: linear-gradient(to bottom, #BE95C4, #5E548E);
+}
+
+#light .Start-header{
+  background: linear-gradient(to bottom, #BE95C4, #FFFFFF);
+}
+
+.Start-link {
+  color: #61dafb;
+}
+
+.Start-logo {
+  animation-name: Start-logo-float;
+  animation-duration: 3s;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+}
+
+@keyframes Start-logo-float {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-50px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+.button-container {
+  height: 5%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.button {
+  background-color: #BE95C4;
+  color: #FFDB34;
+  border: none;
+  border-radius: 10px;
+  height: 100%;
+  width: 15%;
+  font-size: 2rem;
+  font-weight: bold;
+  font-family: 'Quicksand', sans-serif ;
+  text-align: center;
+
+}
+
+.button:hover{
+  background-color: rgba(190, 149, 196, 0.7);
+}

@@ -1,46 +1,50 @@
-import logo from './logo.svg';
-import './App.css';
+import './css/App.css';
+import React from 'react';
+import { BrowserRouter, Route, Routes, Link} from 'react-router-dom';
+import {Start, SettingsPage, DashboardPage, MissionControlPage, NotFoundPage} from './pages'
+import ThemeProvider from "./ThemeProvider.js";
+import DroneListProvider from "./DroneListProvider";
 
-function MyButton()
-{
-  function handleClick(){
-    alert('You clicked me!')
-  }
-  return(
-      <button onClick={handleClick} className='button'>
-        Click me!
+import './css/settings.css'
 
-      </button>
-  );
-}
 
 function App() {
+
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <p>
-          Welcome Angelica!
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+      <ThemeProvider>
+          <div className='App'>
 
-        <div >
-          <MyButton className="button" />
-        </div>
+           <BrowserRouter>
+               <Link to={"/"}>Go to Start</Link>
+               <Link to={"/settings"}>Go to Settings</Link>
+               <Link to={"/dashboard"}>Go to Dashboard</Link>
+                <Routes>
+                  <Route exact path="/" element={<Start/>}/>
+                </Routes>
+               <DroneListProvider>
+                   <Routes>
+                    <Route path='/settings' element={<SettingsPage/>}/>
+                </Routes>
+               </DroneListProvider>
 
-      </header>
+                <Routes>
+                    <Route path='/dashboard' element={<DashboardPage/>}/>
+                </Routes>
+                <Routes>
+                    <Route path='/mission-control' element={<MissionControlPage/>}/>
+                </Routes>
+                <Routes>
+                    <Route path='/not' element={<MissionControlPage/>}/>
+                </Routes>
+               <Routes>
+                    <Route element={<NotFoundPage/>}/>
+                </Routes>
+    </BrowserRouter>
+      </div>
+      </ThemeProvider>
 
-    </div>
+
   );
 }
 
