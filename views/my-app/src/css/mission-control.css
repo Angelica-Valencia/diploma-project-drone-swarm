@@ -1,0 +1,62 @@
+@font-face {
+  font-family: 'Quicksand';
+  src: url('../fonts/Quicksand/static/Quicksand-Bold.ttf') format('truetype');
+  src: url('../fonts/Quicksand/static/Quicksand-Light.ttf') format('truetype');
+  src: url('../fonts/Quicksand/static/Quicksand-Medium.ttf') format('truetype');
+  src: url('../fonts/Quicksand/static/Quicksand-Regular.ttf') format('truetype');
+  src: url('../fonts/Quicksand/static/Quicksand-SemiBold.ttf') format('truetype');
+  /* Add additional src lines for different font formats if available */
+  /* e.g., src: url('fonts/Quicksand-Regular.woff2') format('woff2'); */
+  /* e.g., src: url('fonts/Quicksand-Regular.woff') format('woff'); */
+}
+
+@font-face {
+  font-family: 'JetBrains Mono';
+  src: url('../fonts/JetBrains_Mono/static/JetBrainsMono-Bold.ttf') format('truetype');
+  src: url('../fonts/JetBrains_Mono/static/JetBrainsMono-Light.ttf') format('truetype');
+  src: url('../fonts/JetBrains_Mono/static/JetBrainsMono-Medium.ttf') format('truetype');
+  src: url('../fonts/JetBrains_Mono/static/JetBrainsMono-Regular.ttf') format('truetype');
+  src: url('../fonts/JetBrains_Mono/static/JetBrainsMono-SemiBold.ttf') format('truetype');
+  /* Add additional src lines for different font formats if available */
+  /* e.g., src: url('fonts/Quicksand-Regular.woff2') format('woff2'); */
+  /* e.g., src: url('fonts/Quicksand-Regular.woff') format('woff'); */
+}
+
+.container {
+    width: 100%;
+    height: 100vh;
+}
+
+.main-div{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    font-size: calc(10px + 2vmin);
+    color: white;
+    padding-top: 50px;
+}
+
+#dark .container{
+  background:  linear-gradient(to bottom, #231942, #5E548E);
+}
+
+#medium .container {
+  background: linear-gradient(to bottom, #BE95C4, #5E548E);
+}
+
+#light .container{
+  background: linear-gradient(to bottom, #BE95C4, #FFFFFF);
+}
+
+.stats{
+    width: 30%;
+}
+
+.div-stream{
+    width: 50%;
+}
+
+.div-control{
+    width: 20%;
+}

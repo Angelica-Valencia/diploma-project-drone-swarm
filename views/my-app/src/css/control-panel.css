@@ -1,12 +1,56 @@
+@font-face {
+  font-family: 'Quicksand';
+  src: url('../fonts/Quicksand/static/Quicksand-Bold.ttf') format('truetype');
+  src: url('../fonts/Quicksand/static/Quicksand-Light.ttf') format('truetype');
+  src: url('../fonts/Quicksand/static/Quicksand-Medium.ttf') format('truetype');
+  src: url('../fonts/Quicksand/static/Quicksand-Regular.ttf') format('truetype');
+  src: url('../fonts/Quicksand/static/Quicksand-SemiBold.ttf') format('truetype');
+  /* Add additional src lines for different font formats if available */
+  /* e.g., src: url('fonts/Quicksand-Regular.woff2') format('woff2'); */
+  /* e.g., src: url('fonts/Quicksand-Regular.woff') format('woff'); */
+}
+
+@font-face {
+  font-family: 'JetBrains Mono';
+  src: url('../fonts/JetBrains_Mono/static/JetBrainsMono-Bold.ttf') format('truetype');
+  src: url('../fonts/JetBrains_Mono/static/JetBrainsMono-Light.ttf') format('truetype');
+  src: url('../fonts/JetBrains_Mono/static/JetBrainsMono-Medium.ttf') format('truetype');
+  src: url('../fonts/JetBrains_Mono/static/JetBrainsMono-Regular.ttf') format('truetype');
+  src: url('../fonts/JetBrains_Mono/static/JetBrainsMono-SemiBold.ttf') format('truetype');
+  /* Add additional src lines for different font formats if available */
+  /* e.g., src: url('fonts/Quicksand-Regular.woff2') format('woff2'); */
+  /* e.g., src: url('fonts/Quicksand-Regular.woff') format('woff'); */
+}
+
+#dark .wrapper{
+  background: transparent;
+}
+#medium .wrapper{
+  background: transparent;
+}
+#light .wrapper{
+  background: transparent;
+}
+
 .control-panel {
   position: relative;
   width: 200px;
   height: 200px;
   border-radius: 50%;
-  background-color: #f1f1f1;
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+#dark .control-panel{
+  background: rgba(255, 255, 255, 10%);
+}
+#medium .control-panel{
+  background: rgba(0, 0, 0, 10%);
+}
+
+#light .control-panel{
+  background: rgba(0, 0, 0, 10%);
 }
 
 .arrow-up,
@@ -16,8 +60,34 @@
   position: absolute;
   width: 30px;
   height: 30px;
-  background-color: #ccc;
   border-radius: 50%;
+}
+
+#dark .arrow-up,
+#dark .arrow-down,
+#dark .arrow-left,
+#dark .arrow-right,
+#dark .stop-button{
+  background: #A79DD4;
+  color: white;
+}
+
+#medium .arrow-up,
+#medium .arrow-down,
+#medium .arrow-left,
+#medium .arrow-right,
+#medium .stop-button{
+  background: #AB9BD2;
+  color: white;
+}
+
+#light .arrow-up,
+#light .arrow-down,
+#light .arrow-left,
+#light .arrow-right,
+#light .stop-button{
+  background: #A89ED3;
+  color: white;
 }
 
 .arrow-up {
@@ -44,9 +114,8 @@
   position: absolute;
   width: 60px;
   height: 60px;
-  background-color: red;
   border-radius: 50%;
-  color: white;
+  font-family: 'Quicksand', sans-serif;
   font-weight: bold;
   display: flex;
   justify-content: center;
