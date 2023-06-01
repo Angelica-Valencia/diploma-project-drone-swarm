@@ -1,0 +1,245 @@
+@font-face {
+  font-family: 'Quicksand';
+  src: url('../fonts/Quicksand/static/Quicksand-Bold.ttf') format('truetype');
+  src: url('../fonts/Quicksand/static/Quicksand-Light.ttf') format('truetype');
+  src: url('../fonts/Quicksand/static/Quicksand-Medium.ttf') format('truetype');
+  src: url('../fonts/Quicksand/static/Quicksand-Regular.ttf') format('truetype');
+  src: url('../fonts/Quicksand/static/Quicksand-SemiBold.ttf') format('truetype');
+  /* Add additional src lines for different font formats if available */
+  /* e.g., src: url('fonts/Quicksand-Regular.woff2') format('woff2'); */
+  /* e.g., src: url('fonts/Quicksand-Regular.woff') format('woff'); */
+}
+
+@font-face {
+  font-family: 'JetBrains Mono';
+  src: url('../fonts/JetBrains_Mono/static/JetBrainsMono-Bold.ttf') format('truetype');
+  src: url('../fonts/JetBrains_Mono/static/JetBrainsMono-Light.ttf') format('truetype');
+  src: url('../fonts/JetBrains_Mono/static/JetBrainsMono-Medium.ttf') format('truetype');
+  src: url('../fonts/JetBrains_Mono/static/JetBrainsMono-Regular.ttf') format('truetype');
+  src: url('../fonts/JetBrains_Mono/static/JetBrainsMono-SemiBold.ttf') format('truetype');
+  /* Add additional src lines for different font formats if available */
+  /* e.g., src: url('fonts/Quicksand-Regular.woff2') format('woff2'); */
+  /* e.g., src: url('fonts/Quicksand-Regular.woff') format('woff'); */
+}
+
+
+.dashboard-container{
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: calc(10px + 2vmin);
+    color: white;
+    padding-top: 50px;
+}
+
+#dark .dashboard-container{
+  background:  linear-gradient(to bottom, #231942, #5E548E);
+}
+
+#medium .dashboard-container{
+  background: linear-gradient(to bottom, #BE95C4, #5E548E);
+}
+
+#light .dashboard-container{
+  background: linear-gradient(to bottom, #BE95C4, #FFFFFF);
+}
+
+
+.drones-view{
+    display: flex;
+    flex-direction: row;
+    max-height: 160px;
+    width: 35%;
+    overflow-x: auto;
+    white-space: nowrap;
+    border-radius: 20px;
+    padding-top: 20px;
+    box-shadow: 0 4px 4px rgba(0, 0, 0, 0.2);
+}
+
+#dark .drones-view{
+    background: #9F86C0;
+}
+
+#medium .drones-view{
+    background: rgba(224, 177, 203, 0.56);
+}
+
+#light .drones-view{
+    background: #9F86C0;
+}
+
+
+.carousel-item{
+    display: flex;
+    flex-direction: column;
+    margin: 20px;
+    padding: 20px;
+    min-width: 100px;
+    justify-content: center;
+    align-items: center;
+    font-family: "JetBrains Mono", serif;
+    font-size: 20px;
+}
+
+.carousel-item img{
+    min-height: 50px;
+    background: rgba(0, 0, 0, 0.2);
+    padding: 30px;
+    border-radius: 20px;
+    box-shadow: 0 4px 4px rgba(0, 0, 0, 0.2);
+}
+
+.carousel-item p{
+    text-shadow: 0 4px 4px rgba(0, 0, 0, 0.2);
+}
+
+.carousel-item:hover img{
+    background: rgba(255, 219, 52, 0.52);
+}
+
+.carousel-item:hover p{
+    color: #FFDB34;
+
+}
+
+.drone-info{
+    margin-top: 30px;
+    border-radius: 20px;
+    width: 25%;
+    min-height: 180px;
+    max-height: 200px;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 4px 4px rgba(0, 0, 0, 0.2);
+    background: #7F6B9A;
+
+}
+
+.drone-info h3, .ip-info{
+    color: #FFDB34;
+    font-family: "JetBrains Mono", serif;
+}
+
+
+.battery-info, .ip-info{
+    display: flex;
+    width: 90%;
+    font-size: 20px;
+}
+
+.drone-info p{
+    width: 50%;
+    text-align: center;
+    font-family: "JetBrains Mono", serif;
+    color: #EDB1CB;
+}
+
+.battery-level{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.img-battery{
+    width: 15%;
+    margin-top: auto;
+    color: #FFDB34;
+}
+
+.ip-info{
+    margin-bottom: 10px;
+}
+
+.div-add-swarm {
+    width: 6%;
+    height: 25px;
+    margin: 20px;
+    padding: 0;
+}
+
+.div-add-swarm button{
+    background-color: #FFDB34;
+    border: #FFDB34;
+    border-radius: 20px;
+    width: 100%;
+    height: 25px;
+    margin: 0;
+    color: #5E548E;
+    font-family: 'Quicksand', sans-serif;
+    font-weight: bold;
+    font-size: 18px;
+    box-shadow: 0 4px 4px rgba(0, 0, 0, 0.2);
+
+}
+
+.div-add-swarm .disabled-button{
+    background: rgba(0, 0, 0, 30%);
+    color: #D9D9D9;
+}
+
+.swarmList{
+    width: 35%;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    border-top-right-radius: 20px;
+    border-top-left-radius: 20px;
+}
+
+#dark .swarmList{
+    background: rgba(190, 149,196, 37%) ;
+}
+#medium .swarmList{
+    background: rgba(255, 255,255, 35%) ;
+}
+#light .swarmList{
+    background: rgba(190, 149,196, 37%) ;
+}
+
+.swarmList h2{
+    color: rgba(35, 25, 66, 72%);
+    font-family: 'Quicksand', sans-serif;
+    text-shadow: 0 4px 4px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    height: 10%;
+    margin-bottom: 0;
+
+}
+
+
+.swarmList ul{
+    width: 90%;
+    list-style-type: none;
+    overflow-y: auto;
+}
+
+.div-swarm-list {
+    display: flex;
+    margin-top: 20px;
+    padding-bottom: 10px;
+    padding-top: 10px;
+    padding-left: 40px;
+    border-radius: 20px;
+    justify-content: center;
+    color: #FFFFFF;
+    font-family: 'Quicksand', sans-serif;
+    font-size: 20px;
+    width: 90%;
+}
+
+#dark .div-swarm-list{
+    background: #331f4f;
+}
+
+#medium .div-swarm-list{
+    background: rgba(35, 25, 66, 72%);
+}
+
+#light .div-swarm-list{
+    background: #A87DAD;
+}

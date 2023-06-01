@@ -11,8 +11,6 @@ import DroneListContext from "../DroneListContext";
 function SettingsPage(){
 
 
-    // const [theme, setTheme] = useState('dark')
-
     const { theme, toggleDarkTheme, toggleMediumTheme, toggleLightTheme } =
     useContext(ThemeContext);
 

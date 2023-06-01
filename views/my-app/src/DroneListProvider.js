@@ -9,18 +9,6 @@ function DroneListProvider({ children }) {
 
     const [droneList, setDroneList] = useState(DroneList);
 
-    // useEffect(() => {
-    //     // Save the droneList to local storage as a string
-    //     localStorage.setItem('droneList', JSON.stringify(droneList));
-    //   }, [droneList]);
-    //
-    //   useEffect(() => {
-    //         // Retrieve the droneList from local storage and parse it back into a list
-    //         const storedDroneList = localStorage.getItem('droneList');
-    //         if (storedDroneList) {
-    //           setDroneList(JSON.parse(storedDroneList));
-    //         }
-    //   }, []);
 
     const droneListContextValue = {
         droneList,

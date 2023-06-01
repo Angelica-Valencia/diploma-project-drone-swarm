@@ -1,0 +1,56 @@
+.control-panel {
+  position: relative;
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  background-color: #f1f1f1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.arrow-up,
+.arrow-down,
+.arrow-left,
+.arrow-right {
+  position: absolute;
+  width: 30px;
+  height: 30px;
+  background-color: #ccc;
+  border-radius: 50%;
+}
+
+.arrow-up {
+  top: 0;
+  left: calc(50% - 15px);
+}
+
+.arrow-down {
+  bottom: 0;
+  left: calc(50% - 15px);
+}
+
+.arrow-left {
+  top: calc(50% - 15px);
+  left: 0;
+}
+
+.arrow-right {
+  top: calc(50% - 15px);
+  right: 0;
+}
+
+.stop-button {
+  position: absolute;
+  width: 60px;
+  height: 60px;
+  background-color: red;
+  border-radius: 50%;
+  color: white;
+  font-weight: bold;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  bottom: calc(50% - 30px);
+  left: calc(50% - 30px);
+}

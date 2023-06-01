@@ -1,0 +1,84 @@
+@font-face {
+  font-family: 'JetBrains Mono';
+  src: url('../fonts/JetBrains_Mono/static/JetBrainsMono-Bold.ttf') format('truetype');
+  src: url('../fonts/JetBrains_Mono/static/JetBrainsMono-Light.ttf') format('truetype');
+  src: url('../fonts/JetBrains_Mono/static/JetBrainsMono-Medium.ttf') format('truetype');
+  src: url('../fonts/JetBrains_Mono/static/JetBrainsMono-Regular.ttf') format('truetype');
+  src: url('../fonts/JetBrains_Mono/static/JetBrainsMono-SemiBold.ttf') format('truetype');
+  /* Add additional src lines for different font formats if available */
+  /* e.g., src: url('fonts/Quicksand-Regular.woff2') format('woff2'); */
+  /* e.g., src: url('fonts/Quicksand-Regular.woff') format('woff'); */
+}
+
+.nav{
+  display: flex;
+  justify-content: right;
+}
+.navbar {
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-right: 0;
+  margin: 0;
+  justify-content: left;
+  display: flex;
+  width: 100%;
+}
+
+#dark .navbar{
+  background: rgba(35, 25, 66, 1);
+}
+
+#medium .navbar{
+  background: rgba(190, 149, 196, 1);
+}
+
+#light .navbar{
+  background: rgba(190, 149, 196, 1);
+}
+
+.nav-list {
+  display: flex;
+  list-style: none;
+  margin: 0;
+  padding-right: 30px;
+  font-family: "JetBrains Mono", serif;
+  justify-content: right;
+  width: 100%;
+
+}
+
+.nav-item {
+  margin-right: 10px;
+  padding: 10px;
+  border-radius: 10px;
+}
+
+#dark .nav-item:hover{
+  background: rgba(0, 0, 0, 40%);
+}
+
+#medium .nav-item:hover{
+  background: rgba(0, 0, 0, 20%);
+}
+
+#medium .nav-item:hover{
+  background: rgba(0, 0, 0, 20%);
+}
+
+.nav-link {
+  color: #fff;
+  text-decoration: none;
+  padding: 5px 10px;
+  border-radius: 5px;
+}
+
+#dark .nav-link:hover {
+  color: #BE95C4;
+}
+
+#medium .nav-link:hover {
+  color: #5E548E;
+}
+#light .nav-link:hover {
+  color: #5E548E;
+}
