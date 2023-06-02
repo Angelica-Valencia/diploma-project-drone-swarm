@@ -7,6 +7,7 @@ import batteryPlus from '../battery-plus.svg'
 import batteryAlert from '../battery-alert.svg'
 import SwarmListContext from "../SwarmListContext";
 import baseline from "../baseline-delete.svg";
+import axios from 'axios';
 
 
 function DashboardPage(){
@@ -76,6 +77,28 @@ function DashboardPage(){
             }
     }
 
+    const sendSwarmToServer = async () => {
+  try {
+    const response = await axios.post('http://localhost:8000/api/swarm', swarmList, {
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
+    console.log(response.data);
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+sendSwarmToServer()
+  .then(response => {
+    if (response && response.data) {
+      console.log(response.data);
+    }
+  })
+  .catch(error => {
+    console.log(error);
+  });
 
     return(
         <div id={theme} className='main'>
