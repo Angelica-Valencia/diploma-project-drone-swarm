@@ -8,6 +8,7 @@ import batteryAlert from '../battery-alert.svg'
 import SwarmListContext from "../SwarmListContext";
 import baseline from "../baseline-delete.svg";
 import axios from 'axios';
+import {useNavigate} from "react-router-dom";
 
 
 function DashboardPage(){
@@ -23,6 +24,12 @@ function DashboardPage(){
     const { swarmList, setSwarmList} = useContext(SwarmListContext)
 
     const [droneInfo, setDroneInfo] = useState(droneList[0])
+
+    const navigate = useNavigate();
+
+    function goToMission(){
+    navigate('/mission-control');
+  }
 
     function handleClick({drone}){
         setDroneInfo(drone)
@@ -103,6 +110,18 @@ sendSwarmToServer()
     return(
         <div id={theme} className='main'>
             <div className='dashboard-container'>
+                <button className='button-start-mission'
+                        onClick={()=>{sendSwarmToServer().then(response => {
+                                                                if (response && response.data) {
+                                                                  console.log(response.data);
+                                                                }
+                                                            })
+                                                          .catch(error => {
+                                                            console.log(error);
+                                                          });
+                                    goToMission();}}>
+                    Start Mission
+                </button>
 
                 <div className='drones-view'>
                     {droneList.map( (droneItem, index) =>
