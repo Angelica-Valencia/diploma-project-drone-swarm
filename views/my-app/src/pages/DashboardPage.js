@@ -6,6 +6,7 @@ import droneImg from '../drone.svg'
 import batteryPlus from '../battery-plus.svg'
 import batteryAlert from '../battery-alert.svg'
 import SwarmListContext from "../SwarmListContext";
+import IsOnMissionContext from "../IsOnMissionContext";
 import baseline from "../baseline-delete.svg";
 import axios from 'axios';
 import {useNavigate} from "react-router-dom";
@@ -23,13 +24,12 @@ function DashboardPage(){
 
     const { swarmList, setSwarmList} = useContext(SwarmListContext)
 
+    const {isOnMission, setIsOnMission} = useContext(IsOnMissionContext)
+
+
     const [droneInfo, setDroneInfo] = useState(droneList[0])
 
     const navigate = useNavigate();
-
-    function goToMission(){
-    navigate('/mission-control');
-  }
 
     function handleClick({drone}){
         setDroneInfo(drone)
@@ -67,7 +67,6 @@ function DashboardPage(){
               setSwarmList(prevList => [...prevList, newDrone]);
               alert(`The drone ${drone.name}@${drone.ipAddress} was added to the swarm.`);
             } else {
-              // Do nothing!
               alert('The drone was not added to the swarm.');
             }
 
@@ -79,49 +78,77 @@ function DashboardPage(){
               setSwarmList(updatedList);
               alert(`The drone ${drone.name}@${drone.ipAddress} was not deleted from the swarm.`);
             } else {
-              // Do nothing!
               alert('Thing was not saved to the database.');
             }
     }
 
     const sendSwarmToServer = async () => {
-  try {
-    const response = await axios.post('http://localhost:8000/api/swarm', swarmList, {
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    });
-    console.log(response.data);
-  } catch (error) {
-    console.log(error);
-  }
-};
 
-sendSwarmToServer()
-  .then(response => {
-    if (response && response.data) {
-      console.log(response.data);
+        try {
+            const response = await axios.post('http://localhost:8000/api/swarm', swarmList, {
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+            });
+
+            console.log(response.data);
+        } catch (error) {
+            console.log(error);
+        }
+    };
+
+    const changeMissionStatus = () => {
+        setIsOnMission(true)
+    };
+
+    function goToMission(){
+
+        if (isOnMission){
+            navigate('/mission-control');
+        }
+        else {
+
+            navigate('/mission-control');
+        }
+
     }
-  })
-  .catch(error => {
-    console.log(error);
-  });
+
+    function displayButtonMission(){
+        if (isOnMission){
+            return (
+                <button
+                    className='button-isOnMission'
+                    onClick={()=>{goToMission()}}>Go to ongoing mission
+
+                </button>
+            )
+
+        }
+        else{
+            return (
+                 <button className='button-start-mission'
+                        onClick={()=>{
+                                    sendSwarmToServer().then(response => {
+                                        if (response && response.data) {
+                                            console.log(response.data);
+                                        }
+                                    })
+                                        .catch(error => {
+                                            console.log(error);
+                                        });
+                                    goToMission();
+                                    changeMissionStatus();}}>
+                    Start Mission
+                </button>
+            )
+        }
+    }
+
 
     return(
         <div id={theme} className='main'>
             <div className='dashboard-container'>
-                <button className='button-start-mission'
-                        onClick={()=>{sendSwarmToServer().then(response => {
-                                                                if (response && response.data) {
-                                                                  console.log(response.data);
-                                                                }
-                                                            })
-                                                          .catch(error => {
-                                                            console.log(error);
-                                                          });
-                                    goToMission();}}>
-                    Start Mission
-                </button>
+                {displayButtonMission()}
 
                 <div className='drones-view'>
                     {droneList.map( (droneItem, index) =>

@@ -5,6 +5,7 @@ import {Start, SettingsPage, DashboardPage, MissionControlPage, NotFoundPage} fr
 import ThemeProvider from "./ThemeProvider.js";
 import DroneListProvider from "./DroneListProvider";
 import SwarmListProvider from "./SwarmListProvider";
+import IsOnMissionProvider from "./IsOnMissionProvider";
 import NavigationBar from "./NavigationBar";
 
 
@@ -13,7 +14,8 @@ function App() {
 
   return (
       <ThemeProvider>
-          <div className='App'>
+          <IsOnMissionProvider>
+              <div className='App'>
 
            <BrowserRouter>
                <NavigationBar/>
@@ -44,6 +46,7 @@ function App() {
                 </Routes>
     </BrowserRouter>
       </div>
+          </IsOnMissionProvider>
       </ThemeProvider>
 
 

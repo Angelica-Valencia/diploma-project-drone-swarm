@@ -8,6 +8,7 @@ import logging
 import json
 from starlette.requests import Request
 from starlette.responses import Response, StreamingResponse
+from random import randint
 
 app = FastAPI()
 
@@ -43,8 +44,15 @@ async def receiver_swarm(request: Request):
 
     for i, drone in enumerate(swarm_list):
         ip_addresses.append(drone['ipAddress'])
-    swarm_app = TelloSwarm.fromIps(ip_addresses)
-    return {'message': 'Swarm updated successfully'}
+    try:
+        swarm_app = TelloSwarm.fromIps(ip_addresses)
+        # swarm_app.connect()
+
+        return {'message': 'Swarm updated successfully'}
+
+    except Exception as e:
+        logger.error(str(e))
+        return {'message': 'Error occurred while connecting to the Tello swarm'}
 
 
 @app.get('/api/swarm')
@@ -85,10 +93,18 @@ async def generate_frames():
     camera.release()
 
 
-
 @app.get("/video-stream")
 async def video_stream():
     return StreamingResponse(media_type="multipart/x-mixed-replace; boundary=frame", content=generate_frames())
+
+
+@app.get('/swarm/stats')
+def get_swarm_stats():
+    dic_stats = {'battery': randint(0, 100), 'speed': randint(10, 100), 'temp': randint(0, 40),
+                 'height': randint(20, 500), 'flight_time': randint(0, 120)}
+
+    return json.dumps(dic_stats)
+
 
 if __name__ == "__main__":
     import uvicorn

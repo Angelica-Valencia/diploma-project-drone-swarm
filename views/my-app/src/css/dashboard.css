@@ -46,14 +46,18 @@
   background: linear-gradient(to bottom, #BE95C4, #FFFFFF);
 }
 
-.button-start-mission {
+.button-start-mission, .button-isOnMission{
   position: fixed;
   bottom: 20px;
   right: 300px;
 }
 
-.button-start-mission:hover {
-  background-color: #5E548E;
+.button-isOnMission{
+    right: 220px;
+}
+
+.button-start-mission:hover, .button-isOnMission :hover {
+  opacity: 0.5;
 }
 
 .drones-view{
@@ -171,7 +175,7 @@
     padding: 0;
 }
 
-.div-add-swarm button, .button-start-mission{
+.div-add-swarm button, .button-start-mission, .button-isOnMission{
     background-color: #FFDB34;
     border: #FFDB34;
     border-radius: 20px;
