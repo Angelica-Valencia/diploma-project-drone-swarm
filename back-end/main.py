@@ -22,7 +22,9 @@ app.add_middleware(
 
 swarm_app = None
 ip_addresses = []
+mock_is_flying = False
 
+logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
 logger = logging.getLogger(__name__)
 
 
@@ -105,6 +107,50 @@ def get_swarm_stats():
 
     return json.dumps(dic_stats)
 
+
+@app.get('/swarm/flying_status')
+def get_flying_status():
+    # global swarm_app
+    # print(swarm_app.tellos[0].is_flying)
+    # return swarm_app.tellos[0].is_flying
+
+    return mock_is_flying
+
+@app.get('/swarm/take_off')
+def take_off():
+    global mock_is_flying
+
+    mock_is_flying = True
+
+    return mock_is_flying
+
+    # global swarm_app
+    # swarm_app.takeoff()
+    # logger.info(swarm_app.tellos[0].is_flying)
+    # return swarm_app.tellos[0].is_flying
+
+@app.get('/swarm/land')
+def swarm_land():
+    global mock_is_flying
+
+    mock_is_flying = False
+
+    return mock_is_flying
+
+    # global swarm_app
+    # swarm_app.land()
+    # return swarm_app.tellos[0].is_flying
+
+@app.get('/swarm/end')
+def swarm_end():
+    global mock_is_flying
+
+    mock_is_flying = False
+
+    return mock_is_flying
+
+    # global swarm_app
+    # swarm_app.end()
 
 if __name__ == "__main__":
     import uvicorn

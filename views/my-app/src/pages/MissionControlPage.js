@@ -14,11 +14,15 @@ import timeFlight from '../airplane-time.svg'
 import rotateLeft from '../rotate-left.svg'
 import rotateRight from '../rotate-right.svg'
 import axios from "axios";
+import IsOnMissionContext from "../IsOnMissionContext";
 
 function MissionControlPage(){
 
     const { theme } =
     useContext(ThemeContext);
+
+    const {isOnMission, setIsOnMission} = useContext(IsOnMissionContext)
+    const { swarmList} = useContext(SwarmListContext)
 
     const [videoPlay, setVideoPlay] = useState(false)
     const videoURL = 'http://localhost:8000/video-stream'
@@ -28,6 +32,7 @@ function MissionControlPage(){
      };
 
     const [stats, setStats] = useState({});
+    const [isFlying, setIsFlying] = useState(false)
 
     function streamDisplay(){
         if (videoPlay){
@@ -38,7 +43,7 @@ function MissionControlPage(){
                     <button onClick={togglePlay}
                             className='button-pause'>
                             <img className='img-pause-logo' src={pauseLogo} alt='Pause'/>
-        </button>
+                    </button>
                 </div>
 
             );
@@ -95,6 +100,27 @@ function MissionControlPage(){
             }
         };
 
+        const fetchFlyingStatus = async () => {
+            try {
+                const response = await axios.get('http://localhost:8000/swarm/flying_status');
+                console.log(typeof(response.data))
+                console.log(response.data)
+                setIsFlying(response.data);
+                console.log(stats.battery)
+            } catch (error) {
+                console.error('Error fetching swarm stats:', error);
+            }
+        }
+
+        fetchFlyingStatus().then(
+            response => {
+                if (response && response.data) {
+                    console.log(response.data);
+                }
+            })
+            .catch(error => {
+                console.log(error);
+            });
 
     function displayBattery(){
         if (stats.battery >= 50){
@@ -105,6 +131,136 @@ function MissionControlPage(){
         }
     };
 
+    const takeOff = async () =>{
+        try {
+                const response = await axios.get('http://localhost:8000/swarm/take_off');
+                console.log(typeof(response.data));
+                console.log(response.data);
+            } catch (error) {
+                console.error('Error fetching swarm stats:', error);
+            }
+
+        fetchFlyingStatus().then(
+            response => {
+                if (response && response.data) {
+                    console.log(response.data);
+                }
+            })
+            .catch(error => {
+                console.log(error);
+            });
+    }
+
+    const land = async () =>{
+        try {
+                const response = await axios.get('http://localhost:8000/swarm/land');
+                console.log(typeof(response.data));
+                console.log(response.data);
+            } catch (error) {
+                console.error('Error fetching swarm stats:', error);
+            }
+
+        fetchFlyingStatus().then(
+            response => {
+                if (response && response.data) {
+                    console.log(response.data);
+                }
+            })
+            .catch(error => {
+                console.log(error);
+            });
+    }
+
+    const sendSwarmToServer = async () => {
+
+        try {
+            const response = await axios.post('http://localhost:8000/api/swarm', swarmList, {
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+            });
+
+            console.log(response.data);
+        } catch (error) {
+            console.log(error);
+        }
+
+        setIsOnMission(true)
+    };
+
+    const displayTakeOffLandButton = () =>{
+
+        if(isFlying){
+            return <button className='button-land'
+                            onClick={() =>{land().then(response => {
+                                if (response && response.data) {
+                                    console.log(response.data);
+                                }
+                            })
+                                .catch(error => {
+                                    console.log(error);
+                                })}}>Land</button>
+        }
+        else{
+
+            return <button className='button-take-off'
+                            onClick={() =>{takeOff().then(response => {
+                                if (response && response.data) {
+                                    console.log(response.data);
+                                }
+                            })
+                                .catch(error => {
+                                    console.log(error);
+                                })}}>Take Off</button>
+        }
+
+    }
+
+    const end = async () =>{
+        try {
+                const response = await axios.get('http://localhost:8000/swarm/end');
+                console.log(response.data);
+                setIsOnMission(response.data)
+            } catch (error) {
+            console.error('Error fetching swarm stats:', error);
+        }
+    }
+
+    function buttonStartStopMission(){
+        if (isOnMission){
+            return (
+                <button
+                    className='button-stop-mission'
+                    onClick={()=>{end().then(response => {
+                                        if (response && response.data) {
+                                            console.log(response.data);
+                                        }
+                                    })
+                                        .catch(error => {
+                                            console.log(error);
+                                        })}}>Stop Mission
+
+                </button>
+            )
+
+        }
+        else{
+            return (
+                 <button className='button-mission-start'
+                        onClick={()=>{
+                                    sendSwarmToServer().then(response => {
+                                        if (response && response.data) {
+                                            console.log(response.data);
+                                        }
+                                    })
+                                        .catch(error => {
+                                            console.log(error);
+                                        });}}>
+                    Start Mission
+                </button>
+            )
+        }
+    }
 
 
     return(
@@ -151,14 +307,16 @@ function MissionControlPage(){
 
                 <div className='div-control'>
                     <div className='div-control-top'>
+                        {displayTakeOffLandButton()}
+                        {buttonStartStopMission()}
 
                     </div>
                     <div className='div-control-mid'>
-
+                        <img className='rotate-left' src={rotateLeft} alt='rotate-logo'/>
+                        <ControlPanel/>
+                        <img className='rotate-right' src={rotateRight} alt='rotate-logo'/>
                     </div>
-                    <img className='rotate-left' src={rotateLeft} alt='rotate-logo'/>
-                    <ControlPanel/>
-                    <img className='rotate-right' src={rotateRight} alt='rotate-logo'/>
+
                 </div>
 
 

@@ -103,13 +103,7 @@ function DashboardPage(){
 
     function goToMission(){
 
-        if (isOnMission){
-            navigate('/mission-control');
-        }
-        else {
-
-            navigate('/mission-control');
-        }
+        navigate('/mission-control');
 
     }
 
